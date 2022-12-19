@@ -2,4 +2,4 @@
 
 echo About to fail...
 
-exit 42
+exit /B 42
