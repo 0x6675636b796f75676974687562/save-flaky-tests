@@ -1,6 +1,7 @@
 [general]
     execCmd = "cmd /C"
-    suiteName = "Batch file exiting with a non-zero code"
+    suiteName = "BatchFileExitCode"
+    description = "Batch file exiting with a non-zero code"
     tags = [ "windows-batch" ]
 
 [warn]

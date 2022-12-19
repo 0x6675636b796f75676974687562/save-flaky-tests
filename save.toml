@@ -1,7 +1,7 @@
 [general]
     execCmd = "java -version"
-    description = "Sample description (required)"
-    suiteName = "Text files"
+    suiteName = "TextFiles"
+    description = "Text files"
     tags = [ "text" ]
 
 [warn]
