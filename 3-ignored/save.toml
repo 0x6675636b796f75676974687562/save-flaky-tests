@@ -1,0 +1,2 @@
+[general]
+    excludedTests = [ "3-ignored/README.md" ]
