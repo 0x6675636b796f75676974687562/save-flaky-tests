@@ -1,0 +1,7 @@
+[general]
+    execCmd = "cmd /C"
+    suiteName = "Batch file exiting with a non-zero code"
+    tags = [ "windows-batch" ]
+
+[warn]
+    testNameRegex = "(?iu)^.+\\.(?:bat|cmd)$"

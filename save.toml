@@ -1,0 +1,8 @@
+[general]
+    execCmd = "java -version"
+    description = "Sample description (required)"
+    suiteName = "Text files"
+    tags = [ "text" ]
+
+[warn]
+    testNameRegex = "(?iu)^.+\\.(?:txt|md)$"
