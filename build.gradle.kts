@@ -1,3 +1,4 @@
+import org.gradle.api.file.DuplicatesStrategy.EXCLUDE
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -24,6 +25,11 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 internal val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
     jvmTarget = "1.8"
@@ -32,6 +38,29 @@ compileKotlin.kotlinOptions {
 internal val compileTestKotlin: KotlinCompile by tasks
 compileTestKotlin.kotlinOptions {
     jvmTarget = "1.8"
+}
+
+internal val build: Task by tasks
+build.dependsOn("fatJar")
+
+tasks.register<Jar>("fatJar") {
+    group = "Build"
+    description = "Assembles a jar archive containing the main classes as well as dependencies."
+    dependsOn("classes")
+
+    manifest {
+        attributes["Main-Class"] = "com.saveourtool.save.test.generator.Main"
+    }
+    archiveClassifier.set("all")
+    duplicatesStrategy = EXCLUDE
+
+    from(sourceSets.main.get().output)
+    from(configurations.runtimeClasspath.get().map { entry ->
+        when {
+            entry.isDirectory -> entry
+            else -> zipTree(entry)
+        }
+    })
 }
 
 publishing {
@@ -47,10 +76,11 @@ publishing {
     }
     publications {
         register<MavenPublication>("gpr") {
-            groupId = "com.example"
+            groupId = "com.saveourtool.save"
             version = "0.0.1-SNAPSHOT"
 
             from(components["java"])
+            artifact(tasks["fatJar"])
         }
     }
 }
