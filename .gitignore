@@ -2,3 +2,4 @@
 /.idea/
 /*.iml
 *~
+/save-flaky-tests-*-all.jar

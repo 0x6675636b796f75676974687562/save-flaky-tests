@@ -1,0 +1,2 @@
+[general]
+    excludedTests = [ "2-ignored/Ignored.kt" ]

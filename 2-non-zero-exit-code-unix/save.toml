@@ -1,8 +1,0 @@
-[general]
-    execCmd = "bash --noprofile --norc"
-    suiteName = "BatchFileExitCodeUnix"
-    description = "Batch file exiting with a non-zero code (UNIX)"
-    tags = [ "unix-shell" ]
-
-[warn]
-    testNameRegex = "(?iu)^.+\\.sh$"

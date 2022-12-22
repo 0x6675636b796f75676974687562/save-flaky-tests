@@ -1,0 +1,2 @@
+[warn]
+    execFlags = "--regression fail-on-odd-days --"

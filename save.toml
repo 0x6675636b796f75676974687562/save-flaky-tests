@@ -1,8 +1,23 @@
 [general]
-    execCmd = "java -version"
-    suiteName = "TextFiles"
-    description = "Text files"
-    tags = [ "text" ]
+execCmd = "java -showversion -jar save-flaky-tests-0.0.1-SNAPSHOT-all.jar"
+suiteName = "FlakyTests"
+description = "Tests which exhibit different patterns (regressions, failures with the given rate, etc.)"
+language = "Kotlin"
+tags = [ "flaky-test" ]
 
 [warn]
-    testNameRegex = "(?iu)^.+\\.(?:txt|md)$"
+testNameRegex = "(?iu)^.+\\.kt$"
+# The format of the warnings in the tool's output.
+# Specify `general.expectedWarningsPattern` for in-line warnings (in the code).
+actualWarningsPattern="(\\w+\\.kt):(\\d+):(\\d+): (.+)"
+
+fileNameCaptureGroupOut = 1
+lineCaptureGroupOut = 2
+columnCaptureGroupOut = 3
+messageCaptureGroupOut = 4
+
+warningTextHasColumn = true
+warningTextHasLine = true
+
+# Fail on new (unexpected) warnings
+exactWarningsMatch = true
